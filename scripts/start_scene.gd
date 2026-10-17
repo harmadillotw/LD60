@@ -13,6 +13,9 @@ func _ready() -> void:
 	current_map = 0
 	for x in 22:
 		color_height.append(  Color.html(Global.color_height[x]))
+	var map : Texture2D  = maps.get("map1")
+	Global.current_display_map = maps.get("map1")
+	Global.current_height_map = map.get_image()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -24,11 +27,11 @@ func _on_generate_button_pressed() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	var map : Texture2D  = maps.get("test")
-	Global.current_display_map = maps.get("test")
-	Global.current_height_map = map.get_image()
+	#var map : Texture2D  = maps.get("test")
+	#Global.current_display_map = maps.get("test")
+	#Global.current_height_map = map.get_image()
 	create_display_map()
-	get_tree().change_scene_to_file("res://map.tscn")
+	get_tree().change_scene_to_file("res://scenes/map.tscn")
 	
 func create_display_map() -> void:
 	var image := Image.new()
@@ -47,14 +50,16 @@ func create_display_map() -> void:
 	print(str(image.get_width()) + "," + str(image.get_height()))
 	for y in image.get_width():
 		for x in image.get_height():
-			var height_value = Global.current_height_map.get_pixel(y,x).r
+			var height_value = Global.current_height_map.get_pixel(y,x).r8
 			var color = height_to_color(height_value)
 	#		var test = image.get_pixel(x,y)
 	#		print(str(test.r8))
-			image.set_pixel(y,x,Color.RED)
+			image.set_pixel(y,x,color)
 	Global.current_display_map = ImageTexture.create_from_image(image)
+	
 func height_to_color(height : float) -> Color:
-	for i in 23:
+	for i in range (23,-1,-1):
 		if height > i * 10:
-			color_height[i] 
+			return color_height[i] 
+			
 	return color_height[0] 

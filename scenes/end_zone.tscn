@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dws83tnupu7fg"]
+
+[ext_resource type="Texture2D" uid="uid://cmedagn84p6i8" path="res://images/endzone.png" id="1_xrtis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ipie"]
+size = Vector2(65, 65)
+
+[node name="end_zone" type="Node2D" unique_id=1363624501]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=195117880]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=53842461]
+texture = ExtResource("1_xrtis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1459792185]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_5ipie")

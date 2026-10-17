@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b1yne46gptfnv"]
+
+[ext_resource type="Script" uid="uid://bv73t3i05qjpw" path="res://scripts/map_controller.gd" id="1_gldc4"]
+[ext_resource type="Texture2D" uid="uid://cksu44v0vsaw5" path="res://images/map1.png" id="2_0cso3"]
+[ext_resource type="PackedScene" uid="uid://c3xdr73mcljwc" path="res://scenes/blimp.tscn" id="3_2klcf"]
+[ext_resource type="Script" uid="uid://bd4ydh3waa1ji" path="res://scenes/camera_controller.gd" id="3_2lpho"]
+[ext_resource type="PackedScene" uid="uid://dws83tnupu7fg" path="res://scenes/end_zone.tscn" id="4_2klcf"]
+
+[node name="Node2D" type="Node2D" unique_id=1272845187 node_paths=PackedStringArray("sprite", "blimp", "position_label", "height_label", "speed_label")]
+script = ExtResource("1_gldc4")
+sprite = NodePath("Sprite2D")
+blimp = NodePath("CharacterBody2D")
+position_label = NodePath("Camera2D/PLabel")
+height_label = NodePath("Camera2D/HLabel")
+speed_label = NodePath("Camera2D/SLabel")
+color_height = Array[Color]([Color(0.5882353, 0.74509805, 0.88235295, 1), Color(0.101960786, 0.6313726, 0.2901961, 1), Color(0.25882354, 0.6862745, 0.23137255, 1), Color(0.42745098, 0.74509805, 0.22352941, 1), Color(0.6862745, 0.84313726, 0.33333334, 1), Color(0.9372549, 0.93333334, 0.43529412, 1), Color(0.95686275, 0.9019608, 0.4117647, 1), Color(0.95686275, 0.85882354, 0.37254903, 1), Color(0.95686275, 0.81960785, 0.3372549, 1), Color(0.95686275, 0.7764706, 0.29803923, 1), Color(0.9529412, 0.73333335, 0.27058825, 1), Color(0.9098039, 0.6627451, 0.27450982, 1), Color(0.8745098, 0.6039216, 0.2784314, 1), Color(0.8352941, 0.53333336, 0.28235295, 1), Color(0.8, 0.4745098, 0.28627452, 1), Color(0.7490196, 0.45490196, 0.34509805, 1), Color(0.6666667, 0.5019608, 0.5137255, 1), Color(0.5882353, 0.54901963, 0.6666667, 1), Color(0.7019608, 0.6745098, 0.75686276, 1), Color(0.8156863, 0.8, 0.8509804, 1), Color(0.9372549, 0.92941177, 0.9490196, 1), Color(1, 1, 1, 1)])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=688034426]
+position = Vector2(960, 540)
+texture = ExtResource("2_0cso3")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1069086629 node_paths=PackedStringArray("character")]
+position = Vector2(1172, 981)
+script = ExtResource("3_2lpho")
+character = NodePath("../CharacterBody2D")
+metadata/_edit_lock_ = true
+
+[node name="HLabel" type="Label" parent="Camera2D" unique_id=966416705]
+offset_left = 308.0
+offset_top = -245.0
+offset_right = 517.0
+offset_bottom = -201.0
+
+[node name="PLabel" type="Label" parent="Camera2D" unique_id=1620405542]
+offset_left = -13.0
+offset_top = -254.0
+offset_right = 134.0
+offset_bottom = -195.0
+
+[node name="BupButton" type="Button" parent="Camera2D" unique_id=2015107068]
+offset_left = 368.0
+offset_top = -160.0
+offset_right = 398.0
+offset_bottom = -129.0
+text = "UP"
+
+[node name="BDownButton" type="Button" parent="Camera2D" unique_id=345743557]
+offset_left = 355.0
+offset_top = -45.0
+offset_right = 415.0
+offset_bottom = -14.0
+text = "DOWN"
+
+[node name="RRButton" type="Button" parent="Camera2D" unique_id=154430055]
+offset_left = 437.0
+offset_top = -106.0
+offset_right = 493.0
+offset_bottom = -75.0
+text = "RIGHT"
+
+[node name="RLButton" type="Button" parent="Camera2D" unique_id=1691749213]
+offset_left = 289.0
+offset_top = -106.0
+offset_right = 333.0
+offset_bottom = -75.0
+text = "LEFT"
+
+[node name="SLabel" type="Label" parent="Camera2D" unique_id=883880505]
+offset_left = -448.0
+offset_top = -274.0
+offset_right = -408.0
+offset_bottom = -251.0
+
+[node name="CharacterBody2D" parent="." unique_id=2013652389 instance=ExtResource("3_2klcf")]
+position = Vector2(1172, 981)
+
+[node name="StopButton" type="Button" parent="." unique_id=1902703044]
+offset_right = 210.0
+offset_bottom = 76.0
+text = "Stop"
+
+[node name="end_zone" parent="." unique_id=1363624501 instance=ExtResource("4_2klcf")]
+position = Vector2(296, 143)
+
+[connection signal="button_down" from="Camera2D/BupButton" to="." method="_on_bup_button_button_down"]
+[connection signal="button_up" from="Camera2D/BupButton" to="." method="_on_bup_button_button_up"]
+[connection signal="pressed" from="Camera2D/BupButton" to="." method="_on_bup_button_pressed"]
+[connection signal="pressed" from="StopButton" to="." method="_on_stop_button_pressed"]

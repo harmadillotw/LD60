@@ -6,6 +6,7 @@ extends Node2D
 @export var position_label : Label
 
 @export var height_label : Label
+@export var speed_label : Label
 
 @export var color_height : Array[Color]
 
@@ -24,15 +25,15 @@ func _process(delta: float) -> void:
 	var c_image = sprite.texture.get_image()
 	var loc : Color = c_image.get_pixel(blimp_pos.x, blimp_pos.y)
 
-	if (loc.r8 > 0):
-		blimp.stop()
+	#if (loc.r8 > 0):
+	#	blimp.stop()
 	loc.r8 = 255
 	loc.g8 = 255
 	loc.b8 = 255
 	c_image.set_pixel(blimp_pos.x, blimp_pos.y, loc)
 	sprite.texture = ImageTexture.create_from_image(c_image)
 	position_label.text = (str(blimp_pos.x) + "," + str(blimp_pos.y))
-	
+	speed_label.text = str(blimp.get_speed())
 	
 	# update ui
 	height_label.text = (str(blimp.height))
