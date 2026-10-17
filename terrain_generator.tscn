@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://desib465feg32"]
+
+[ext_resource type="Script" uid="uid://dqvohyyflmggr" path="res://terrain_generator.gd" id="1_wc7r7"]
+
+[node name="TerrainGenerator" type="Node2D" unique_id=1115272953 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_wc7r7")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1476950181]
