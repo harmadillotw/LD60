@@ -6,8 +6,8 @@
 bg_color = Color(0, 0, 0, 1)
 
 [node name="EndPanel" type="Panel" unique_id=373433726 node_paths=PackedStringArray("title_label", "details_label")]
-offset_right = 474.0
-offset_bottom = 201.0
+offset_right = 741.0
+offset_bottom = 206.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gw3fx")
 script = ExtResource("1_wgf1u")
 title_label = NodePath("TitleLabel")
@@ -16,36 +16,36 @@ metadata/_edit_lock_ = true
 
 [node name="TitleLabel" type="Label" parent="." unique_id=331543926]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 472.0
-offset_bottom = 102.0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 731.0
+offset_bottom = 108.0
 theme_override_font_sizes/font_size = 72
-text = "Crashed"
+text = "Out Of Bounds"
 horizontal_alignment = 1
 
 [node name="DetailsLabel" type="Label" parent="." unique_id=824681805]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 96.0
-offset_right = 473.0
-offset_bottom = 143.0
+offset_left = 10.0
+offset_top = 102.0
+offset_right = 730.0
+offset_bottom = 149.0
 horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="." unique_id=1783765755]
 layout_mode = 0
-offset_left = 109.0
-offset_top = 155.0
-offset_right = 174.0
-offset_bottom = 186.0
+offset_left = 218.0
+offset_top = 161.0
+offset_right = 283.0
+offset_bottom = 192.0
 text = "Restart"
 
 [node name="ExitButton" type="Button" parent="." unique_id=687177661]
 layout_mode = 0
-offset_left = 342.0
-offset_top = 157.0
-offset_right = 379.0
-offset_bottom = 188.0
+offset_left = 451.0
+offset_top = 163.0
+offset_right = 488.0
+offset_bottom = 194.0
 text = "Exit
 "
 

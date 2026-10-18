@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dexw5x4fiy58t" path="res://scenes/direction.png" id="12_wslke"]
 [ext_resource type="Texture2D" uid="uid://cd6g4wah1gurm" path="res://scenes/arrow.png" id="13_gw3fx"]
 
-[node name="Node2D" type="Node2D" unique_id=1272845187 node_paths=PackedStringArray("sprite", "destination", "blimp", "position_label", "height_label", "ground_height_label", "speed_label", "time_label", "end_panel", "rr_button", "lr_button", "buoy_label", "direction_sprite", "wind_sprite")]
+[node name="Node2D" type="Node2D" unique_id=1272845187 node_paths=PackedStringArray("sprite", "destination", "blimp", "position_label", "height_label", "ground_height_label", "speed_label", "time_label", "end_panel", "rr_button", "lr_button", "buoy_label", "direction_sprite", "wind_sprite", "out_time_label", "out_time_panel")]
 script = ExtResource("1_gldc4")
 sprite = NodePath("Sprite2D")
 destination = NodePath("end_zone")
@@ -30,6 +30,8 @@ lr_button = NodePath("CanvasLayer/RLButton")
 buoy_label = NodePath("CanvasLayer/BuoyancyLabel")
 direction_sprite = NodePath("CanvasLayer/DirectionSprite2D")
 wind_sprite = NodePath("CanvasLayer/WindSprite2D")
+out_time_label = NodePath("CanvasLayer/OuntPanel/OutTimeLabel")
+out_time_panel = NodePath("CanvasLayer/OuntPanel")
 color_height = Array[Color]([Color(0.5882353, 0.74509805, 0.88235295, 1), Color(0.101960786, 0.6313726, 0.2901961, 1), Color(0.25882354, 0.6862745, 0.23137255, 1), Color(0.42745098, 0.74509805, 0.22352941, 1), Color(0.6862745, 0.84313726, 0.33333334, 1), Color(0.9372549, 0.93333334, 0.43529412, 1), Color(0.95686275, 0.9019608, 0.4117647, 1), Color(0.95686275, 0.85882354, 0.37254903, 1), Color(0.95686275, 0.81960785, 0.3372549, 1), Color(0.95686275, 0.7764706, 0.29803923, 1), Color(0.9529412, 0.73333335, 0.27058825, 1), Color(0.9098039, 0.6627451, 0.27450982, 1), Color(0.8745098, 0.6039216, 0.2784314, 1), Color(0.8352941, 0.53333336, 0.28235295, 1), Color(0.8, 0.4745098, 0.28627452, 1), Color(0.7490196, 0.45490196, 0.34509805, 1), Color(0.6666667, 0.5019608, 0.5137255, 1), Color(0.5882353, 0.54901963, 0.6666667, 1), Color(0.7019608, 0.6745098, 0.75686276, 1), Color(0.8156863, 0.8, 0.8509804, 1), Color(0.9372549, 0.92941177, 0.9490196, 1), Color(1, 1, 1, 1)])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1272585508]
@@ -109,10 +111,10 @@ text = "time"
 
 [node name="EndPanel" parent="CanvasLayer" unique_id=373433726 instance=ExtResource("8_mlgqr")]
 visible = false
-offset_left = 974.0
-offset_top = 875.0
-offset_right = 1448.0
-offset_bottom = 1076.0
+offset_left = 232.0
+offset_top = 205.0
+offset_right = 965.0
+offset_bottom = 406.0
 
 [node name="RudderLabel" type="Label" parent="CanvasLayer" unique_id=323798436]
 offset_left = 100.0
@@ -198,6 +200,32 @@ text = "Wind
 [node name="WindSprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1042013463]
 position = Vector2(884, 552)
 texture = ExtResource("13_gw3fx")
+
+[node name="OuntPanel" type="Panel" parent="CanvasLayer" unique_id=1215964478]
+visible = false
+offset_left = 199.0
+offset_top = 33.0
+offset_right = 952.0
+offset_bottom = 313.0
+
+[node name="Label" type="Label" parent="CanvasLayer/OuntPanel" unique_id=125339673]
+layout_mode = 0
+offset_right = 750.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Out of Bound. Return to map."
+horizontal_alignment = 1
+
+[node name="OutTimeLabel" type="Label" parent="CanvasLayer/OuntPanel" unique_id=275594590]
+layout_mode = 0
+offset_left = 342.0
+offset_top = 131.0
+offset_right = 491.0
+offset_bottom = 203.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "5.0"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=688034426]
 position = Vector2(960, 540)
