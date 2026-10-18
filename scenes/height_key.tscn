@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b45gr0nxpo75m"]
+
+[ext_resource type="Script" uid="uid://cnpuapfcm103w" path="res://scenes/height_key.gd" id="1_tqel8"]
+
+[node name="HeightKey" type="Node2D" unique_id=716515793]
+script = ExtResource("1_tqel8")
+
+[node name="Panel" type="Panel" parent="." unique_id=1650748125]
+offset_right = 101.0
+offset_bottom = 624.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1936755237]
+custom_minimum_size = Vector2(100, 20)
+custom_maximum_size = Vector2(100, 20)
+layout_mode = 1
+offset_right = 97.0
+offset_bottom = 418.0

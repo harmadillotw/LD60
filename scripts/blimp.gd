@@ -10,14 +10,16 @@ var height : float
 var increase_height : bool = false
 var d_rotation : int
 var d_speed : float
+var d_boyancy : float
 
 func _ready() -> void:
 	set_direction(-90)
 	rotation_degrees = -90
 	moving = true
-	height = 100
+	height = 30
 	d_rotation = 0
 	d_speed = 0
+	d_boyancy = 0
 	
 
 func _physics_process(delta: float) -> void:
@@ -27,8 +29,8 @@ func _physics_process(delta: float) -> void:
 		var rotation_direction = Input.get_axis("d_left","d_right")
 		rotation += rotation_direction * ROTATION_SPEED * delta
 		set_direction(rotation_degrees) 
-	if increase_height:
-		height = height + 1
+		height += d_boyancy * delta
+	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		print("finished")
@@ -40,12 +42,18 @@ func _input(event):
 		d_rotation = d_rotation - 1
 	if event.is_action_pressed("d_stop_rotation"):
 		d_rotation = 0
-	if event.is_action_pressed("d_up"):
+	if event.is_action_pressed("d_accelerate"):
 		if d_speed < 10:
 			d_speed += 1
-	if event.is_action_pressed("d_down"):
+	if event.is_action_pressed("d_decelerate"):
 		if d_speed > 1:
 			d_speed -= 1
+	if event.is_action_pressed("d_up"):
+		if d_boyancy < 10:
+			d_boyancy += 1
+	if event.is_action_pressed("d_down"):
+		if d_boyancy > -10:
+			d_boyancy -= 1
 	
 func set_direction(degrees : float) -> void:
 	var radians: float = deg_to_rad(degrees)
@@ -57,9 +65,9 @@ func go() -> void:
 	moving = true
 
 func start_increase_height() -> void:
-	increase_height = true
+	d_boyancy += 1
 func stop_increase_height() -> void:
-	increase_height = false
+	d_boyancy -= 1
 	
 func get_height() -> float:
 	return height

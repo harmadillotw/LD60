@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cc066f3uqi67u"]
+
+[ext_resource type="Texture2D" uid="uid://c2s2piat7rvga" path="res://images/key.png" id="1_5shg7"]
+[ext_resource type="Script" uid="uid://bep0xy8ea2kfx" path="res://scenes/h_key.gd" id="1_cxupi"]
+
+[node name="h_key" type="Panel" unique_id=380976818 node_paths=PackedStringArray("sprite", "label")]
+custom_minimum_size = Vector2(100, 20)
+offset_right = 100.0
+offset_bottom = 20.0
+script = ExtResource("1_cxupi")
+sprite = NodePath("Sprite2D")
+label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1694277185]
+position = Vector2(8, 8)
+texture = ExtResource("1_5shg7")
+
+[node name="Label" type="Label" parent="." unique_id=1317483751]
+layout_mode = 0
+offset_left = 29.0
+offset_right = 75.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 12
+text = "20m"
