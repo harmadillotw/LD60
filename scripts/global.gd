@@ -1,8 +1,11 @@
 extends Node
 
-
+const CONTOUR_GAP = 10
+const CONTOUR_MULT = 5
+const ACTIVE_COLOR = Color.GOLDENROD
 var current_height_map : Image
 var current_display_map : Texture2D
+
 
 var color_height = ["#96bee1",
 "#1aa14a",

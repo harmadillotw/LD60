@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bq68nafeboqhp"]
+
+[node name="BoundsPanel" type="Panel" unique_id=1694630919]
+offset_right = 40.0
+offset_bottom = 40.0

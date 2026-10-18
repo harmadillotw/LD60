@@ -5,24 +5,41 @@
 [ext_resource type="PackedScene" uid="uid://c3xdr73mcljwc" path="res://scenes/blimp.tscn" id="3_2klcf"]
 [ext_resource type="Script" uid="uid://bd4ydh3waa1ji" path="res://scenes/camera_controller.gd" id="3_2lpho"]
 [ext_resource type="PackedScene" uid="uid://dws83tnupu7fg" path="res://scenes/end_zone.tscn" id="4_2klcf"]
+[ext_resource type="Texture2D" uid="uid://b3o1tobuhlbll" path="res://images/up.png" id="4_blm8a"]
+[ext_resource type="Texture2D" uid="uid://bgmlrluxw0kap" path="res://images/right.png" id="4_nakos"]
+[ext_resource type="Texture2D" uid="uid://cif8p3onu2bqt" path="res://images/stop.png" id="5_jh32y"]
+[ext_resource type="Texture2D" uid="uid://dxcofek2qxrg1" path="res://images/up_active.png" id="5_mlgqr"]
 [ext_resource type="PackedScene" uid="uid://b45gr0nxpo75m" path="res://scenes/height_key.tscn" id="6_2lpho"]
+[ext_resource type="PackedScene" uid="uid://drodjn8urmp1r" path="res://scenes/end_panel.tscn" id="8_mlgqr"]
+[ext_resource type="Texture2D" uid="uid://dexw5x4fiy58t" path="res://scenes/direction.png" id="12_wslke"]
 
-[node name="Node2D" type="Node2D" unique_id=1272845187 node_paths=PackedStringArray("sprite", "blimp", "position_label", "height_label", "speed_label", "time_label", "crashed_label", "end_panel")]
+[node name="Node2D" type="Node2D" unique_id=1272845187 node_paths=PackedStringArray("sprite", "destination", "blimp", "position_label", "height_label", "ground_height_label", "speed_label", "time_label", "end_panel", "rr_button", "lr_button", "buoy_label", "direction_sprite")]
 script = ExtResource("1_gldc4")
 sprite = NodePath("Sprite2D")
+destination = NodePath("end_zone")
 blimp = NodePath("CharacterBody2D")
 position_label = NodePath("Camera2D/PLabel")
 height_label = NodePath("Camera2D/HLabel")
+ground_height_label = NodePath("Camera2D/GHLabel")
 speed_label = NodePath("Camera2D/SLabel")
 time_label = NodePath("Camera2D/TimeLabel")
-crashed_label = NodePath("Camera2D/Panel/CrashedLabel")
-end_panel = NodePath("Camera2D/Panel")
+end_panel = NodePath("Camera2D/EndPanel")
+rr_button = NodePath("Camera2D/RRButton")
+lr_button = NodePath("Camera2D/RLButton")
+buoy_label = NodePath("Camera2D/BuoyancyLabel")
+direction_sprite = NodePath("Camera2D/DirectionSprite2D")
 color_height = Array[Color]([Color(0.5882353, 0.74509805, 0.88235295, 1), Color(0.101960786, 0.6313726, 0.2901961, 1), Color(0.25882354, 0.6862745, 0.23137255, 1), Color(0.42745098, 0.74509805, 0.22352941, 1), Color(0.6862745, 0.84313726, 0.33333334, 1), Color(0.9372549, 0.93333334, 0.43529412, 1), Color(0.95686275, 0.9019608, 0.4117647, 1), Color(0.95686275, 0.85882354, 0.37254903, 1), Color(0.95686275, 0.81960785, 0.3372549, 1), Color(0.95686275, 0.7764706, 0.29803923, 1), Color(0.9529412, 0.73333335, 0.27058825, 1), Color(0.9098039, 0.6627451, 0.27450982, 1), Color(0.8745098, 0.6039216, 0.2784314, 1), Color(0.8352941, 0.53333336, 0.28235295, 1), Color(0.8, 0.4745098, 0.28627452, 1), Color(0.7490196, 0.45490196, 0.34509805, 1), Color(0.6666667, 0.5019608, 0.5137255, 1), Color(0.5882353, 0.54901963, 0.6666667, 1), Color(0.7019608, 0.6745098, 0.75686276, 1), Color(0.8156863, 0.8, 0.8509804, 1), Color(0.9372549, 0.92941177, 0.9490196, 1), Color(1, 1, 1, 1)])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=688034426]
 position = Vector2(960, 540)
 texture = ExtResource("2_0cso3")
 metadata/_edit_lock_ = true
+
+[node name="end_zone" parent="." unique_id=1363624501 instance=ExtResource("4_2klcf")]
+position = Vector2(296, 143)
+
+[node name="CharacterBody2D" parent="." unique_id=2013652389 instance=ExtResource("3_2klcf")]
+position = Vector2(1172, 981)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1069086629 node_paths=PackedStringArray("character")]
 position = Vector2(1172, 981)
@@ -31,11 +48,18 @@ character = NodePath("../CharacterBody2D")
 metadata/_edit_lock_ = true
 
 [node name="HLabel" type="Label" parent="Camera2D" unique_id=966416705]
-offset_left = -346.0
-offset_top = -309.0
-offset_right = -247.0
-offset_bottom = -265.0
+offset_left = -16.0
+offset_top = 182.0
+offset_right = 83.0
+offset_bottom = 226.0
 text = "height"
+
+[node name="GHLabel" type="Label" parent="Camera2D" unique_id=1202334281]
+offset_left = 105.0
+offset_top = 185.0
+offset_right = 145.0
+offset_bottom = 208.0
+text = "GH"
 
 [node name="PLabel" type="Label" parent="Camera2D" unique_id=1620405542]
 offset_left = -13.0
@@ -43,98 +67,149 @@ offset_top = -254.0
 offset_right = 134.0
 offset_bottom = -195.0
 
-[node name="BupButton" type="Button" parent="Camera2D" unique_id=2015107068]
-offset_left = 368.0
-offset_top = -160.0
-offset_right = 398.0
-offset_bottom = -129.0
-text = "UP"
+[node name="BupButton" type="TextureButton" parent="Camera2D" unique_id=557066207]
+offset_left = -226.0
+offset_top = 177.0
+offset_right = -194.0
+offset_bottom = 209.0
+texture_normal = ExtResource("4_blm8a")
+texture_pressed = ExtResource("5_mlgqr")
 
-[node name="BDownButton" type="Button" parent="Camera2D" unique_id=345743557]
-offset_left = 355.0
-offset_top = -45.0
-offset_right = 415.0
-offset_bottom = -14.0
-text = "DOWN"
+[node name="BDownButton" type="TextureButton" parent="Camera2D" unique_id=1205728220]
+offset_left = -225.0
+offset_top = 245.0
+offset_right = -188.0
+offset_bottom = 277.0
+texture_normal = ExtResource("4_blm8a")
+texture_pressed = ExtResource("5_mlgqr")
+flip_v = true
 
-[node name="RRButton" type="Button" parent="Camera2D" unique_id=154430055]
-offset_left = 437.0
-offset_top = -106.0
-offset_right = 493.0
-offset_bottom = -75.0
-text = "RIGHT"
+[node name="RRButton" type="TextureButton" parent="Camera2D" unique_id=1067244915]
+offset_left = -316.0
+offset_top = 211.0
+offset_right = -281.0
+offset_bottom = 243.0
+texture_normal = ExtResource("4_nakos")
 
-[node name="RLButton" type="Button" parent="Camera2D" unique_id=1691749213]
-offset_left = 289.0
-offset_top = -106.0
-offset_right = 333.0
-offset_bottom = -75.0
-text = "LEFT"
+[node name="RSButton" type="TextureButton" parent="Camera2D" unique_id=1134992181]
+offset_left = -363.0
+offset_top = 211.0
+offset_right = -331.0
+offset_bottom = 243.0
+texture_normal = ExtResource("5_jh32y")
+
+[node name="RLButton" type="TextureButton" parent="Camera2D" unique_id=998812203]
+offset_left = -410.0
+offset_top = 211.0
+offset_right = -375.0
+offset_bottom = 243.0
+texture_normal = ExtResource("4_nakos")
+flip_h = true
 
 [node name="SLabel" type="Label" parent="Camera2D" unique_id=883880505]
-offset_left = -337.0
-offset_top = -256.0
-offset_right = -290.0
-offset_bottom = -233.0
+offset_left = -232.0
+offset_top = 216.0
+offset_right = -185.0
+offset_bottom = 239.0
 text = "speed"
 
 [node name="TimeLabel" type="Label" parent="Camera2D" unique_id=312905341]
-offset_left = 489.0
-offset_top = -304.0
-offset_right = 529.0
-offset_bottom = -281.0
+offset_left = -549.0
+offset_top = -313.0
+offset_right = -509.0
+offset_bottom = -290.0
 text = "time"
 
-[node name="Panel" type="Panel" parent="Camera2D" unique_id=920985949]
+[node name="EndPanel" parent="Camera2D" unique_id=373433726 instance=ExtResource("8_mlgqr")]
 visible = false
-offset_left = -299.0
-offset_top = -224.0
-offset_right = 175.0
-offset_bottom = -87.0
+offset_left = -198.0
+offset_top = -106.0
+offset_right = 276.0
+offset_bottom = 95.0
 
-[node name="CrashedLabel" type="Label" parent="Camera2D/Panel" unique_id=1539220540]
-layout_mode = 0
-offset_left = 101.0
-offset_top = -9.0
-offset_right = 387.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 72
-text = "Crashed"
+[node name="RudderLabel" type="Label" parent="Camera2D" unique_id=323798436]
+offset_left = -374.0
+offset_top = 184.0
+offset_right = -317.0
+offset_bottom = 207.0
+text = "Rudder"
 
-[node name="RestartButton" type="Button" parent="Camera2D/Panel" unique_id=569075639]
-layout_mode = 0
-offset_left = 108.0
-offset_top = 92.0
-offset_right = 173.0
-offset_bottom = 123.0
-text = "Restart"
+[node name="Label" type="Label" parent="Camera2D" unique_id=527974520]
+offset_left = -231.0
+offset_top = 141.0
+offset_right = -182.0
+offset_bottom = 164.0
+text = "Power"
 
-[node name="ExitButton" type="Button" parent="Camera2D/Panel" unique_id=1224641847]
-layout_mode = 0
-offset_left = 341.0
-offset_top = 94.0
-offset_right = 378.0
-offset_bottom = 125.0
-text = "Exit
-"
+[node name="Label2" type="Label" parent="Camera2D" unique_id=1150381901]
+offset_left = -141.0
+offset_top = 142.0
+offset_right = -65.0
+offset_bottom = 165.0
+text = "Buoyancy"
 
-[node name="CharacterBody2D" parent="." unique_id=2013652389 instance=ExtResource("3_2klcf")]
-position = Vector2(1172, 981)
+[node name="BuoyUpButton" type="TextureButton" parent="Camera2D" unique_id=764621507]
+offset_left = -115.0
+offset_top = 176.0
+offset_right = -75.0
+offset_bottom = 216.0
+texture_normal = ExtResource("4_blm8a")
+texture_pressed = ExtResource("5_mlgqr")
+
+[node name="BuoyDonwButton" type="TextureButton" parent="Camera2D" unique_id=1625997007]
+offset_left = -116.0
+offset_top = 245.0
+offset_right = -76.0
+offset_bottom = 285.0
+texture_normal = ExtResource("4_blm8a")
+texture_pressed = ExtResource("5_mlgqr")
+flip_v = true
+
+[node name="HeightKey" parent="Camera2D" unique_id=716515793 instance=ExtResource("6_2lpho")]
+position = Vector2(471, -309)
+
+[node name="BuoyancyLabel" type="Label" parent="Camera2D" unique_id=852216896]
+offset_left = -117.0
+offset_top = 217.0
+offset_right = -77.0
+offset_bottom = 240.0
+text = "buoy"
+
+[node name="Label3" type="Label" parent="Camera2D" unique_id=1952715708]
+offset_left = -16.0
+offset_top = 145.0
+offset_right = 36.0
+offset_bottom = 168.0
+text = "Height"
+
+[node name="Label4" type="Label" parent="Camera2D" unique_id=1370317979]
+offset_left = 75.0
+offset_top = 146.0
+offset_right = 178.0
+offset_bottom = 169.0
+text = "Ground Level"
+
+[node name="Label5" type="Label" parent="Camera2D" unique_id=252163759]
+offset_left = 230.0
+offset_top = 147.0
+offset_right = 320.0
+offset_bottom = 170.0
+text = "Destination"
+
+[node name="DirectionSprite2D" type="Sprite2D" parent="Camera2D" unique_id=2063183470]
+position = Vector2(278, 227)
+texture = ExtResource("12_wslke")
 
 [node name="StopButton" type="Button" parent="." unique_id=1902703044]
 offset_right = 210.0
 offset_bottom = 76.0
 text = "Stop"
 
-[node name="end_zone" parent="." unique_id=1363624501 instance=ExtResource("4_2klcf")]
-position = Vector2(296, 143)
-
-[node name="HeightKey" parent="." unique_id=716515793 instance=ExtResource("6_2lpho")]
-position = Vector2(1622, 717)
-
-[connection signal="button_down" from="Camera2D/BupButton" to="." method="_on_bup_button_button_down"]
-[connection signal="button_up" from="Camera2D/BupButton" to="." method="_on_bup_button_button_up"]
 [connection signal="pressed" from="Camera2D/BupButton" to="." method="_on_bup_button_pressed"]
-[connection signal="pressed" from="Camera2D/Panel/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Camera2D/Panel/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Camera2D/BDownButton" to="." method="_on_b_down_button_pressed"]
+[connection signal="pressed" from="Camera2D/RRButton" to="." method="_on_rr_button_pressed"]
+[connection signal="pressed" from="Camera2D/RSButton" to="." method="_on_rs_button_pressed"]
+[connection signal="pressed" from="Camera2D/RLButton" to="." method="_on_rl_button_pressed"]
+[connection signal="pressed" from="Camera2D/BuoyUpButton" to="." method="_on_buoy_up_button_pressed"]
+[connection signal="pressed" from="Camera2D/BuoyDonwButton" to="." method="_on_buoy_donw_button_pressed"]
 [connection signal="pressed" from="StopButton" to="." method="_on_stop_button_pressed"]

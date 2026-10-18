@@ -58,8 +58,9 @@ func create_display_map() -> void:
 	Global.current_display_map = ImageTexture.create_from_image(image)
 	
 func height_to_color(height : float) -> Color:
-	for i in range (23,-1,-1):
-		if height > i * 10:
+	#for i in range (23,-1,-1):
+	for i in 22:
+		if height < i * Global.CONTOUR_GAP:
 			return color_height[i] 
 			
 	return color_height[0] 

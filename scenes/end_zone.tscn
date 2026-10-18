@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dws83tnupu7fg"]
 
-[ext_resource type="Texture2D" uid="uid://cmedagn84p6i8" path="res://images/endzone.png" id="1_xrtis"]
+[ext_resource type="Texture2D" uid="uid://dx6hilprqqoc0" path="res://scenes/target.png" id="1_xrtis"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ipie"]
-size = Vector2(65, 65)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ipie"]
+radius = 26.043234
 
 [node name="end_zone" type="Node2D" unique_id=1363624501]
 
@@ -13,5 +13,5 @@ size = Vector2(65, 65)
 texture = ExtResource("1_xrtis")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1459792185]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_5ipie")
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_5ipie")
