@@ -22,6 +22,7 @@ extends Node2D
 @export var buoy_label : Label
 
 @export var direction_sprite : Sprite2D
+@export var wind_sprite : Sprite2D
 
 
 @export var color_height : Array[Color]
@@ -37,6 +38,8 @@ func _ready() -> void:
 	time_elapsed = 0.0
 	update_time = true
 	#sprite.texture = ImageTexture.create_from_image(Global.current_map)
+	wind_sprite.rotation_degrees = -45
+	blimp.set_wind(Vector2.from_angle(wind_sprite.rotation),5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,6 +69,9 @@ func _process(delta: float) -> void:
 	
 	# update ui
 	direction_sprite.look_at(destination.position)
+	#var radians: float = deg_to_rad(-90)
+	#direction = Vector2.RIGHT.rotated(radians)
+	#wind_sprite.rotation_degrees = -90
 	buoy_label.text = str(blimp.get_buoyancy())
 	height_label.text = str(snappedf(blimp.height, 0.01))
 	ground_height_label.text = str(ground_height) 

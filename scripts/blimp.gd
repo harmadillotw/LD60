@@ -12,8 +12,12 @@ var d_rotation : int
 var d_speed : float
 var d_boyancy : float
 var rotation_direction : float
+var wind_speed : float
+var wind_direction : Vector2
 
 func _ready() -> void:
+	wind_direction = Vector2(0,0)
+	wind_speed = 0.0
 	set_direction(-90)
 	rotation_degrees = -90
 	moving = true
@@ -25,8 +29,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if moving:
-		velocity = direction * d_speed * SPEED
-		
+		var d_velocity = direction * d_speed * SPEED
+		var w_velocity = wind_direction * wind_speed 
+		velocity = d_velocity + w_velocity
 		#var rotation_direction = Input.get_axis("d_left","d_right")
 		rotation += rotation_direction * ROTATION_SPEED * delta
 		set_direction(rotation_degrees) 
@@ -105,3 +110,9 @@ func decrease_buoyancy() -> void:
 		d_boyancy -= 1
 func get_buoyancy() -> float:
 	return d_boyancy
+	
+func set_wind(wdir : Vector2, wspeed : float) -> void:
+	wind_direction = wdir
+	wind_speed = wspeed 
+	
+	
