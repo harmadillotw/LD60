@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var prop : AnimatedSprite2D
 const SPEED = 5.0
-const ROTATION_SPEED = 0.5
+const ROTATION_SPEED = 0.3
 
 var direction : Vector2
 var moving : bool
@@ -21,7 +21,7 @@ func _ready() -> void:
 	set_direction(-90)
 	rotation_degrees = -90
 	moving = true
-	height = 100
+	height = Global.map_configs[Global.current_map].start_height
 	d_rotation = 0
 	d_speed = 0
 	d_boyancy = 0

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LD60"
-run/main_scene="uid://duef0eotx01bi"
+run/main_scene="uid://brqj4xpth6qb4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -23,7 +23,6 @@ GlobalSignals="*uid://cta406f8t4hr3"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [input]
 

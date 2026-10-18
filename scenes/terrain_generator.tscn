@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dqvohyyflmggr" path="res://scripts/terrain_generator.gd" id="1_vj78e"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_500w1"]
+noise_type = 4
+frequency = 0.003
+
 [node name="TerrainGenerator" type="Node2D" unique_id=1115272953 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_vj78e")
+noise = SubResource("FastNoiseLite_500w1")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1476950181]

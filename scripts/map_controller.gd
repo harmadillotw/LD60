@@ -43,9 +43,25 @@ func _ready() -> void:
 	sprite.texture = Global.current_display_map
 	time_elapsed = 0.0
 	update_time = true
-	#sprite.texture = ImageTexture.create_from_image(Global.current_map)
-	wind_sprite.rotation_degrees = -45
-	blimp.set_wind(Vector2.from_angle(wind_sprite.rotation),5)
+	if Global.generated_level:
+		wind_sprite.rotation_degrees = Global.gen_map_config.wind_direction
+		var wind_speed = Global.gen_map_config.wind_speed
+		var wind_dir = Global.gen_map_config.wind_direction
+		
+		blimp.set_wind(rotation_to_direction(wind_dir),wind_speed)
+		#blimp.set_wind(Vector2.from_angle(wind_dir),wind_speed)
+		destination.position = Global.gen_map_config.destination_location
+		blimp.position = Global.gen_map_config.start_loction
+	else:
+		#sprite.texture = ImageTexture.create_from_image(Global.current_map)
+		wind_sprite.rotation_degrees = Global.map_configs[Global.current_map].wind_direction
+		var wind_speed = Global.map_configs[Global.current_map].wind_speed
+		var wind_dir = Global.map_configs[Global.current_map].wind_direction
+		
+		blimp.set_wind(rotation_to_direction(wind_dir),wind_speed)
+		#blimp.set_wind(Vector2.from_angle(wind_dir),wind_speed)
+		destination.position = Global.map_configs[Global.current_map].destination_location
+		blimp.position = Global.map_configs[Global.current_map].start_loction
 	inbounds = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -178,3 +194,15 @@ func _reached_destination() -> void:
 	update_time = false
 	end_panel.setup_panel(0,time_elapsed)
 	end_panel.visible = true
+	
+func rotation_to_direction(rotation_degrees: float) -> Vector2:
+	# Convert rotation from degrees to radians (skip if already in radians)
+	var rotation_radians = deg_to_rad(rotation_degrees)
+
+	# Calculate direction vector
+	var direction = Vector2(cos(rotation_radians), sin(rotation_radians))
+
+	# Normalize the vector (optional, but ensures length = 1)
+	direction = direction.normalized()
+
+	return direction

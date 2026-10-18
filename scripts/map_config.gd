@@ -7,3 +7,4 @@ var start_loction : Vector2
 var destination_location : Vector2
 var wind_direction : float
 var wind_speed : float
+var start_height : float

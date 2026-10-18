@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://brqj4xpth6qb4"]
+
+[ext_resource type="Script" uid="uid://b8xkj358m6j1a" path="res://scripts/splash.gd" id="1_10vqf"]
+[ext_resource type="FontFile" uid="uid://lxme4vxy5din" path="res://font/Rosemartin-3lpDM.otf" id="1_86pdq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ipie"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" unique_id=1769882569]
+script = ExtResource("1_10vqf")
+
+[node name="Panel" type="Panel" parent="." unique_id=1159649371]
+offset_left = -29.0
+offset_top = -25.0
+offset_right = 1201.0
+offset_bottom = 691.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ipie")
+
+[node name="Label2" type="Label" parent="Panel" unique_id=1321778224]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 502.0
+offset_right = 753.0
+offset_bottom = 547.0
+theme_override_font_sizes/font_size = 32
+text = "Created by Harmadillo"
+
+[node name="Label" type="Label" parent="Panel" unique_id=1858895668]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 62.0
+offset_right = 794.0
+offset_bottom = 207.0
+theme_override_fonts/font = ExtResource("1_86pdq")
+theme_override_font_sizes/font_size = 96
+text = "Dirigible"

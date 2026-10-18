@@ -5,6 +5,12 @@ const CONTOUR_MULT = 5
 const ACTIVE_COLOR = Color.GOLDENROD
 var current_height_map : Image
 var current_display_map : Texture2D
+var current_gen_map : Image
+
+var map_configs : Array[MapConfig]
+var gen_map_config : MapConfig
+var current_map : int
+var generated_level : bool
 
 
 var color_height = ["#96bee1",

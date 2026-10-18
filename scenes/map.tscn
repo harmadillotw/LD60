@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b1yne46gptfnv"]
 
 [ext_resource type="Script" uid="uid://bv73t3i05qjpw" path="res://scripts/map_controller.gd" id="1_gldc4"]
-[ext_resource type="Texture2D" uid="uid://cksu44v0vsaw5" path="res://images/map1.png" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://c3xdr73mcljwc" path="res://scenes/blimp.tscn" id="3_2klcf"]
 [ext_resource type="Script" uid="uid://bd4ydh3waa1ji" path="res://scenes/camera_controller.gd" id="3_2lpho"]
 [ext_resource type="PackedScene" uid="uid://dws83tnupu7fg" path="res://scenes/end_zone.tscn" id="4_2klcf"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dxcofek2qxrg1" path="res://images/up_active.png" id="5_mlgqr"]
 [ext_resource type="PackedScene" uid="uid://b45gr0nxpo75m" path="res://scenes/height_key.tscn" id="6_2lpho"]
 [ext_resource type="PackedScene" uid="uid://drodjn8urmp1r" path="res://scenes/end_panel.tscn" id="8_mlgqr"]
+[ext_resource type="Texture2D" uid="uid://ca0sucbuqcr0c" path="res://images/map3.png" id="10_gw3fx"]
 [ext_resource type="Texture2D" uid="uid://dexw5x4fiy58t" path="res://scenes/direction.png" id="12_wslke"]
 [ext_resource type="Texture2D" uid="uid://cd6g4wah1gurm" path="res://scenes/arrow.png" id="13_gw3fx"]
 
@@ -36,6 +36,12 @@ color_height = Array[Color]([Color(0.5882353, 0.74509805, 0.88235295, 1), Color(
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1272585508]
 
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1637295356]
+offset_left = 17.0
+offset_top = 440.0
+offset_right = 1047.0
+offset_bottom = 642.0
+
 [node name="BDownButton" type="TextureButton" parent="CanvasLayer" unique_id=1205728220]
 offset_left = 249.0
 offset_top = 576.0
@@ -60,6 +66,7 @@ offset_bottom = 534.0
 text = "GH"
 
 [node name="PLabel" type="Label" parent="CanvasLayer" unique_id=1620405542]
+visible = false
 offset_left = 565.0
 offset_top = 72.0
 offset_right = 712.0
@@ -214,7 +221,7 @@ offset_right = 750.0
 offset_bottom = 91.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "Out of Bound. Return to map."
+text = "Out of Bounds. Return to map."
 horizontal_alignment = 1
 
 [node name="OutTimeLabel" type="Label" parent="CanvasLayer/OuntPanel" unique_id=275594590]
@@ -229,14 +236,14 @@ text = "5.0"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=688034426]
 position = Vector2(960, 540)
-texture = ExtResource("2_0cso3")
+texture = ExtResource("10_gw3fx")
 metadata/_edit_lock_ = true
 
 [node name="end_zone" parent="." unique_id=1363624501 instance=ExtResource("4_2klcf")]
-position = Vector2(296, 143)
+position = Vector2(138, 152)
 
 [node name="CharacterBody2D" parent="." unique_id=2013652389 instance=ExtResource("3_2klcf")]
-position = Vector2(1172, 981)
+position = Vector2(1295, 592)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1069086629 node_paths=PackedStringArray("character")]
 position = Vector2(1172, 981)

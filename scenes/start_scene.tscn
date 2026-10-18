@@ -4,32 +4,115 @@
 [ext_resource type="Texture2D" uid="uid://ca4g4w6cwa21i" path="res://images/h_test1.png" id="2_i331m"]
 [ext_resource type="PackedScene" uid="uid://desib465feg32" path="res://scenes/terrain_generator.tscn" id="3_0kdh5"]
 [ext_resource type="Texture2D" uid="uid://cksu44v0vsaw5" path="res://images/map1.png" id="3_i331m"]
+[ext_resource type="FontFile" uid="uid://lxme4vxy5din" path="res://font/Rosemartin-3lpDM.otf" id="5_0kdh5"]
 
-[node name="Node2D" type="Node2D" unique_id=1991061896]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ipie"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdg1y"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_451e5"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" unique_id=1991061896 node_paths=PackedStringArray("level_select")]
 script = ExtResource("1_u7rsi")
 maps = Dictionary[String, Texture2D]({
 "map1": ExtResource("3_i331m"),
 "test": ExtResource("2_i331m")
 })
+level_select = NodePath("OptionButton")
 
-[node name="TerrainGenerator" parent="." unique_id=1115272953 instance=ExtResource("3_0kdh5")]
+[node name="TerrainGenerator" parent="." unique_id=1115272953 node_paths=PackedStringArray("textrec") instance=ExtResource("3_0kdh5")]
+textrec = NodePath("../Panel/TextureRect")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2123908034]
-position = Vector2(303, 99)
+[node name="Panel" type="Panel" parent="." unique_id=554341389]
+offset_left = -28.0
+offset_top = -33.0
+offset_right = 1180.0
+offset_bottom = 685.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ipie")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=2123908034]
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1352730615]
+visible = false
+layout_mode = 0
+offset_left = 329.0
+offset_top = 192.0
+offset_right = 1158.0
+offset_bottom = 661.0
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=439142321]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 62.0
+offset_right = 794.0
+offset_bottom = 207.0
+theme_override_fonts/font = ExtResource("5_0kdh5")
+theme_override_font_sizes/font_size = 96
+text = "Dirigible"
+
+[node name="Label2" type="Label" parent="." unique_id=1094650934]
+visible = false
+offset_left = 555.0
+offset_top = 34.0
+offset_right = 704.0
+offset_bottom = 57.0
+text = "Generate new level"
 
 [node name="GenerateButton" type="Button" parent="." unique_id=147222169]
-offset_left = 303.0
-offset_top = 99.0
-offset_right = 436.0
-offset_bottom = 145.0
+visible = false
+offset_left = 560.0
+offset_top = 74.0
+offset_right = 693.0
+offset_bottom = 120.0
 text = "Generate"
 
 [node name="StartButton" type="Button" parent="." unique_id=182229221]
-offset_left = 312.0
-offset_top = 192.0
-offset_right = 433.0
-offset_bottom = 238.0
+offset_left = 540.0
+offset_top = 302.0
+offset_right = 729.0
+offset_bottom = 355.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdg1y")
+text = "Start
+"
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=1665923326]
+offset_left = 342.0
+offset_top = 302.0
+offset_right = 481.0
+offset_bottom = 355.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_451e5")
+selected = 0
+item_count = 3
+popup/item_0/text = "Level 1"
+popup/item_0/id = 0
+popup/item_1/text = "Level 2"
+popup/item_1/id = 1
+popup/item_2/text = "Level 3"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="." unique_id=1533179225]
+offset_left = 339.0
+offset_top = 235.0
+offset_right = 514.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 32
+text = "Select Level"
+
+[node name="GenStartButton" type="Button" parent="." unique_id=530489118]
+visible = false
+offset_left = 750.0
+offset_top = 75.0
+offset_right = 853.0
+offset_bottom = 118.0
 text = "Start"
 
 [connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GenStartButton" to="." method="_on_gen_start_button_pressed"]
